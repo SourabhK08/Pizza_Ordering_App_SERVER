@@ -1,11 +1,16 @@
-import { Controller,Get,Post,Delete,Patch, Req, Param } from '@nestjs/common';
+import { Controller,Get,Post,Delete,Patch, Req, Param,Body, ParseIntPipe } from '@nestjs/common';
 import { Request } from "express";
 import { UserService } from './user.service';
+import { registerUserDto } from 'src/dto/register-user.dto';
+import { loginUserDto } from 'src/dto/login-user.dto';
+
 
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
+    // LEARNING PURPOSE
+    
     @Get()
     getUsers(){
       return this.userService.get();
@@ -22,8 +27,24 @@ export class UserController {
     }
     
     @Delete('/:userId')
-    deleteUser ( @Param() params:{userId:number} ){
-        return this.userService.delete(params)
+    deleteUser ( @Param('userId',ParseIntPipe) userId:number ){
+        return this.userService.delete(userId)
     }
 
+
+    // API to REGISTER / LOGIN USER
+    
+    @Post('register')
+    async registerUser(@Body() params: registerUserDto ) {
+    const loginResult = await this.userService.register(params);
+    return loginResult;
+}
+
+    //async is used handle asynchronous operations in a clean and efficient way when interacting with bd, making http req .
+
+    @Post('login')
+  async login(@Body() data: loginUserDto) {
+    const loginResult = await this.userService.login(data);
+    return loginResult;
+  }
 }
