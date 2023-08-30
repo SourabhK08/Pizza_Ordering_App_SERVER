@@ -12,7 +12,7 @@ import { UserModule } from './user/user.module';
     username: 'postgres',
     password: 'postgres',
     database: 'pizzastore',
-    synchronize: true}), UserModule, UserModule],
+    synchronize: true}), UserModule],
   controllers: [AppController],
   providers: [AppService],
 })

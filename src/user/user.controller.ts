@@ -3,6 +3,7 @@ import { Request } from "express";
 import { UserService } from './user.service';
 import { registerUserDto } from 'src/dto/register-user.dto';
 import { loginUserDto } from 'src/dto/login-user.dto';
+import { addSelectedPizza } from 'src/dto/add-selected-pizza.dto';
 
 
 @Controller('user')
@@ -47,4 +48,16 @@ export class UserController {
     const loginResult = await this.userService.login(data);
     return loginResult;
   }
+
+  // API to add selected pizza
+
+  @Post('add')
+  async addPizza(@Body() pizzaData: addSelectedPizza) {
+    return this.userService.addPizza(pizzaData);
+  }
+
+  // @Get('selected')
+  // async getSelectedPizzas(@Body() ) {
+  //   return this.userService.getSelectedPizzas();
+  // }
 }
