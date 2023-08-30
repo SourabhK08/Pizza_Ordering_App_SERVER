@@ -60,4 +60,11 @@ export class UserController {
   // async getSelectedPizzas(@Body() ) {
   //   return this.userService.getSelectedPizzas();
   // }
+
+   // API to fetch ingredients 
+
+   @Get('list')
+  async listIngredients(@Body() data:{ list:string } ) {
+    return this.userService.listIngredients(data);
+  }
 }

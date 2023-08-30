@@ -39,6 +39,11 @@ export class UserService {
     return pizzaData
   }
 
+  // API to fetch ingredients 
+
+  listIngredients(data:{ list:string }){
+    return data
+  }
   
 
 }
