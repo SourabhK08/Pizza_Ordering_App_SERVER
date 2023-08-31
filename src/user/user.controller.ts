@@ -4,6 +4,7 @@ import { UserService } from './user.service';
 import { registerUserDto } from 'src/dto/register-user.dto';
 import { loginUserDto } from 'src/dto/login-user.dto';
 import { addSelectedPizza } from 'src/dto/add-selected-pizza.dto';
+import { fetchCartItems } from 'src/dto/fetch-cart-items.dto';
 
 
 @Controller('user')
@@ -65,6 +66,15 @@ export class UserController {
 
    @Get('list')
   async listIngredients(@Body() data:{ list:string } ) {
-    return this.userService.listIngredients(data);
+    console.log("yes")
+    // return this.userService.listIngredients(data);
+    return " sourabh"
+  }
+
+  // CART ITMES
+  @Post('cart')
+  async cart(@Body() cartData){
+    console.log(cartData);
+    return this.userService.cartItem(cartData)
   }
 }
