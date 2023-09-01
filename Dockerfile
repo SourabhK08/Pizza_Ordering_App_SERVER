@@ -1,27 +1,21 @@
-# BASE IMAGE
-
+# base image
 FROM node:alpine
 
-# WORKING DIRECTORY
+# specifying working directory
+WORKDIR '/server'
 
-WORKDIR /server
+# copying package json 
+COPY ./package.json ./
 
-# COPYING PACKAGE JSON FILE
-
-COPY package.json ./
-
-# INSTALL DEPENDENCIES
-
+# installing dependencies
 RUN npm install
 
-# COPYING ALl OTHER FILES
-
+# copying rest other files
 COPY . .
 
 # EXPOSING PORT
 
 EXPOSE 5425
 
-# STARTUP COMMAND
-
-CMD [ "run","npm","start" ]
+# Startup command
+CMD ["npm", "run", "start"]
