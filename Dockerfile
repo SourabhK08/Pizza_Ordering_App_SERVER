@@ -15,7 +15,7 @@ COPY . .
 
 # EXPOSING PORT
 
-EXPOSE 5425
+EXPOSE 8000
 
 # Startup command
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:dev"]
