@@ -5,6 +5,7 @@ import { registerUserDto } from 'src/dto/register-user.dto';
 import { loginUserDto } from 'src/dto/login-user.dto';
 import { addSelectedPizza } from 'src/dto/add-selected-pizza.dto';
 import { fetchCartItems } from 'src/dto/fetch-cart-items.dto';
+import { fetchOrders } from 'src/dto/fetch-orders.dto';
 
 
 @Controller('user')
@@ -13,25 +14,25 @@ export class UserController {
 
     // LEARNING PURPOSE
     
-    @Get()
-    getUsers(){
-      return this.userService.get();
-    }
+    // @Get()
+    // getUsers(){
+    //   return this.userService.get();
+    // }
 
-    @Post()
-    storeUser(@Req() req:Request ){
-        return this.userService.store(req);
-    }
+    // @Post()
+    // storeUser(@Req() req:Request ){
+    //     return this.userService.store(req);
+    // }
 
-    @Patch('/:userId')
-    updateUser(@Req() req:Request , @Param() param:{ userId:number}){
-        return this.userService.update(req, param);
-    }
+    // @Patch('/:userId')
+    // updateUser(@Req() req:Request , @Param() param:{ userId:number}){
+    //     return this.userService.update(req, param);
+    // }
     
-    @Delete('/:userId')
-    deleteUser ( @Param('userId',ParseIntPipe) userId:number ){
-        return this.userService.delete(userId)
-    }
+    // @Delete('/:userId')
+    // deleteUser ( @Param('userId',ParseIntPipe) userId:number ){
+    //     return this.userService.delete(userId)
+    // }
 
 
     // API to REGISTER / LOGIN USER
@@ -71,10 +72,19 @@ export class UserController {
     return " sourabh"
   }
 
-  // CART ITMES
+  // API to fetch cart items for the user
   @Post('cart')
   async cart(@Body() cartData){
     console.log(cartData);
     return this.userService.cartItem(cartData)
   }
+
+  // API to fetch orders
+  @Get('orders')
+  async orders( @Body() orderDetails: fetchOrders  ){
+    return this.userService.orderDetails(orderDetails)
+  }
+
+  // API to place orders
+  
 }

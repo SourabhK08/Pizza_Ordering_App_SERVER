@@ -3,6 +3,7 @@ import { Request } from 'express';
 import { async } from 'rxjs';
 import { addSelectedPizza } from 'src/dto/add-selected-pizza.dto';
 import { fetchCartItems } from 'src/dto/fetch-cart-items.dto';
+import { fetchOrders } from 'src/dto/fetch-orders.dto';
 import { loginUserDto } from 'src/dto/login-user.dto';
 import { registerUserDto } from 'src/dto/register-user.dto';
 
@@ -46,8 +47,14 @@ export class UserService {
     return data
   }
   
+  // API to fetch cart items for the user
   cartItem(cartData : fetchCartItems){
     return cartData
+  }
+
+  // API to fetch orders
+  orderDetails(od : fetchOrders){
+    return od
   }
 
 }
