@@ -68,8 +68,7 @@ export class UserController {
    @Get('list')
   async listIngredients(@Body() data:{ list:string } ) {
     console.log("yes")
-    // return this.userService.listIngredients(data);
-    return " sourabh"
+  return this.userService.listIngredients(data);
   }
 
   // API to fetch cart items for the user
@@ -77,7 +76,7 @@ export class UserController {
   async cart(@Body() cartData){
     console.log(cartData);
     return this.userService.cartItem(cartData)
-  }
+  } 
 
   // API to fetch orders
   @Get('orders')
